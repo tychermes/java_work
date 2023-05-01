@@ -48,14 +48,14 @@ public class ArrayExample {
 		// 배열 크기를 동적 할당하고 싶다면? ArrayList를 사용?
 		
 		int len = 0;
-		// while문 조건에 true만 써버리니까 블록안에 if조건을 지저분하게 쓰게 됨!
-		while (true) {
-			if(len > strArr.length) break;// 인덱스가 배열 크기를 넘어가면 안되니까~
-			System.out.print("입력: ");
-			strArr[len] = sc.nextLine();
-			if (strArr[len].equals("q")) break;
-			len++;
-		}
+//		// while문 조건에 true만 써버리니까 블록안에 if조건을 지저분하게 쓰게 됨!
+//		while (true) {
+//			if(len > strArr.length) break;// 인덱스가 배열 크기를 넘어가면 안되니까~
+//			System.out.print("입력: ");
+//			strArr[len] = sc.nextLine();
+//			if (strArr[len].equals("q")) break;
+//			len++;
+//		}
 		
 		// 최초 한번은 입력을 받고서, 입력을 그만 둘 때의 조건이 지정됐다면, do-while문을 쓰는게 훨씬 낫다!
 		do {
