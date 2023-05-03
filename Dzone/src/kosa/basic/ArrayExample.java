@@ -58,11 +58,11 @@ public class ArrayExample {
 //		}
 		
 		// 최초 한번은 입력을 받고서, 입력을 그만 둘 때의 조건이 지정됐다면, do-while문을 쓰는게 훨씬 낫다!
+		len = 0;
 		do {
-			len = 0;
 			System.out.print("입력: ");
 			strArr[len] = sc.nextLine();
-		} while (strArr[len].equals("q") || len > strArr.length);
+		} while (!(strArr[len].equals("q") || len++ > strArr.length));
 		
 		System.out.print("출력: ");
 		// 향상된 for문으로 strArr를 출력하니까 length인 Short.MAX_VALUE만큼 다 출력되길래 

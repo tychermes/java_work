@@ -27,11 +27,14 @@ public class CallByExample {
 		a[1] = temp;
 	}
 	
-	//
+	// <------------- 23.05.02에 주석 왜 달려고 했을까....???
 	
 	
 	public static void main(String[] args) {
 		// 메서드 호출 방법 두가지(CallByValue vs CallByReference)
+		
+		
+		
 		
 		// CallByValue 값에 의한 호출: 기존 변수에는 아무런 영향X
 		int num = 10;
