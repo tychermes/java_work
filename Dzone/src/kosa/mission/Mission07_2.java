@@ -47,7 +47,6 @@ public class Mission07_2 {
 		insert(record, count++);
 	}
 	
-	// 보윤: record 원본배열을 정렬 한 후 인덱스 새로 부여해서 출력하는 방법도.있음.
 	public static void printList(int record[][]) {
 		System.out.println("전체 성적 출력 >");
 		System.out.println("번호\t국어\t영어\t수학\t총점\t평균");
@@ -60,7 +59,8 @@ public class Mission07_2 {
 	}
 	
 	public static void search(int record[][]) {
-		System.out.print("조회를 원하는 학생 번호를 입력하세요: ");
+		// TODO: ▼ while문으로 사용자가 인덱스 범위를 벗어난 입력을 해도 오류나지 않게 처리 가능.
+		System.out.print("조회를 원하는 학생 번호를 입력하세요: "); 
 		int index = sc.nextInt();
 		System.out.println((index-1)+"번 학생 성적 조회 >");
 		System.out.println("번호\t국어\t영어\t수학\t총점\t평균");
@@ -69,7 +69,8 @@ public class Mission07_2 {
 		}
 		System.out.println();
 	}
-	
+
+	// 보윤: record 원본배열을 정렬 한 후 인덱스 새로 부여해서 출력하는 방법도.있음.
 	public static void sort(int record[][]) { // 총점 기준 오름차순
 		System.out.println("성적 정렬(총점 기준 오름차순) >");
 		System.out.println("번호\t국어\t영어\t수학\t총점\t평균");
@@ -89,6 +90,8 @@ public class Mission07_2 {
 				// 정렬 기준 작성 => 2차원 배열 안에 1차원 배열의 첫번째 인덱스를 기준으로 오름차순 정렬
 				if(o1[4] < o2[4]) {	// [4]번째 원소인 총점 끼리의 비교를 의미함
 					return -1;	// 뒤에 원소가 더 큰 경우, 자리를 바꾸지 말라는 뜻으로 -1을 리턴.
+					// return (o1[4] - o2[4]); 
+					// ★ 이런 방식도 가능! 결과 값이 음수면 자리를 바꾸지 않음
 				} else if(o1[4] > o2[4]) {
 					return 1;	// 뒤의 원소가 더 작은 경우, 자리를 바꾸라는 뜻으로 1을 리턴.
 				}
@@ -117,7 +120,7 @@ public class Mission07_2 {
 					record[i][j] = record[i+1][j]; //이게 맞다...
 				}
 			}
-//			record[i] = record[i+1]; // 1칸씩 Move... 여기서 이렇게 해주려고 했는데, 안바뀜.
+//			record[i] = record[i+1]; // 1칸씩 Move... 여기서 이렇게 해주려고 했는데, =>안바뀜.
 //			// ▲ 2차원 배열 안의 1차원 배열은 주소값 가리키는 걸로 통째로 바뀌지 않음. 
 //			// ★★★★★왜냐면! 2차원 배열은 사실 1차원 배열끼리 내부적으로 일렬로 이어져 있는 것이기 떄문에.★★★★★★
 		}
