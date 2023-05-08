@@ -15,37 +15,49 @@ public class Order {
 	
 	public Order(Member member, Item item, int quantity) {
 		super();
-		this.quantity = quantity;
 		this.member = member;
 		this.item = item;
+		this.quantity = quantity;
 
 		this.orderNo = ++orderCount;
 		this.amount = quantity * item.getPrice();
 	}
 	
-//	public Order(String memberName, String itemName, int quantity) {
+//	public Order(String memberStr, String itemStr, int quantity) {
 //		super();
-//		this.quantity = quantity;
-//		if() {
+//		for(Member m : me)
+//		for() {
+//			if(member.getName().contains(memberStr)) {
+//				if(item.getName().contains(itemStr)) {
+//					new Order(member, item, quantity);
+//				}
+//			} 
 //			
 //		}
-//		this.item = item;
-//
+//		
 //		this.orderNo = ++orderCount;
 //		this.amount = quantity * item.getPrice();
 //	}
 	
-	public static void printOrderList(ArrayList<Order> orderList) {
+	// TODO: ★★ 이부분 어렵네!!!! 꼭 외워놓기.
+	public static void searchOrder(ArrayList<Order> orderList) {
 		for(Order o : orderList) {
 			o.printOrder();
 		}
 	}
 	
+	public static void printOrderList(ArrayList<Order> orderList) {
+		for(Order o : orderList) {
+			System.out.println("---------------------------------------");
+			o.printOrder();
+		}
+	}
+	
 	public void printOrder() {
-		System.out.println("---------------------------------------");
 		System.out.println("주문번호: "+orderNo);
-		System.out.println("회원이름: "+member.getName());
-		System.out.println("회원주소: "+member.getAddress());
+		member.printMember();
+//		System.out.println("회원이름: "+member.getName());
+//		System.out.println("회원주소: "+member.getAddress());
 		System.out.println("주문한 상품 모델명: "+item.getName());
 		System.out.println("주문한 상품 가격: "+item.getPrice()+"원");
 		System.out.println("주문한 수량: "+quantity+"개");
