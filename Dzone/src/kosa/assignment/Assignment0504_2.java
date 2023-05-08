@@ -57,21 +57,21 @@ public class Assignment0504_2 {
 		}
 		System.out.println();
 		
-		//==========================================================
-		System.out.println("2-5)");
-		for(int i=0; i<2*n-1; i++) {
-			for(int j=0; j<2*n-1; j++) {
-				if((i<(2*n-1)/2) && (j<(2*n-1)/2-i || j>(2*n-1)/2+i)) {
-					System.out.print("-");	// 나중에 공백문자로 바꿔주면 됨.
-				} else if((i>(2*n-1)/2) && (j<i-(2*n-1)/2 || j>i+(2*n-1)/2)) {
-					System.out.print("-");	// 나중에 공백문자로 바꿔주면 됨.
-				} else {
-					System.out.print("*");
-				}
-			}
-			System.out.println();
-		}
-		System.out.println();
+//		//==========================================================
+//		System.out.println("2-5) 실패");
+//		for(int i=0; i<2*n-1; i++) {
+//			for(int j=0; j<2*n-1; j++) {
+//				if((i<(2*n-1)/2) && (j<(2*n-1)/2-i || j>(2*n-1)/2+i)) {
+//					System.out.print("-");	// 나중에 공백문자로 바꿔주면 됨.
+//				} else if((i>(2*n-1)/2) && (j<i-(2*n-1)/2 || j>i+(2*n-1)/2)) {
+//					System.out.print("-");	// 나중에 공백문자로 바꿔주면 됨.
+//				} else {
+//					System.out.print("*");
+//				}
+//			}
+//			System.out.println();
+//		}
+//		System.out.println();
 
 		//★인덱스 이해 잘 안됨============================================
 		// 마름모는.... for를 다시 짜서 한 번 더 돌리면 되는 거였다... 
@@ -91,7 +91,7 @@ public class Assignment0504_2 {
 		}
 		for(int i=n-1; i>0; i--) {
 			for(int j=0; j<2*n-1; j++) {
-				if(j<=n-1-i || j>=n-1+i) { // ★이건 왜 범위에 =이 포함될까?
+				if(j<=n-1-i || j>=n-1+i) { // TODO: ★이건 왜 범위에 =이 포함될까?
 					System.out.print("-");	// 나중에 공백문자로 바꿔주면 됨.
 				} else {
 					System.out.print("*");
