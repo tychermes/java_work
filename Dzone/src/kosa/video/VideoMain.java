@@ -17,8 +17,8 @@ public class VideoMain {
 		videoArray[0] = new Video(1, "트랜스포머3", "서봉수");
 
 		GeneralMember[] generalMember = new GeneralMember[100];
-		generalMember[0] = new GeneralMember("aaa", "홍길동", "동탄", videoArray[0]);
-//		generalMember[0] = new GeneralMember("aaa", "홍길동", "동탄"); // 회원가입만 해놓을 경우.
+//		generalMember[0] = new GeneralMember("aaa", "홍길동", "동탄", videoArray[0]);
+		generalMember[0] = new GeneralMember("aaa", "홍길동", "동탄"); // 회원가입만 해놓을 경우.
 //		generalMember[0].print();
 		
 		videoArray[1] = new Video(2, "탑건2","톰크루즈");

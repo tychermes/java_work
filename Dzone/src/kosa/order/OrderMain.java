@@ -1,8 +1,8 @@
 package kosa.order;
 
 import java.util.List;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class OrderMain {
 	/*
@@ -20,13 +20,13 @@ public class OrderMain {
 		List<Item> itemList = new ArrayList<Item>();
 		List<Order> orderList = new ArrayList<Order>();
 
-		// Manually Generate
-//		// 멤버 목록 생성
+		// Manually Generating
+//		// 멤버 목록 직접 생성
 //		memberList.add(new Member("홍길동", "가산"));
 //		memberList.add(new Member("김길동", "관악"));
 //		memberList.add(new Member("이길동", "성남"));
 //		memberList.add(new Member("박길동", "수원"));		
-//		// 아이템 목록 생성
+//		// 아이템 목록 직접 생성
 //		itemList.add(new Item("갤럭시S23", 100));
 //		itemList.add(new Item("갤럭시S23 Plus", 200));
 //		itemList.add(new Item("갤럭시S23 Ultra", 300));
@@ -34,12 +34,13 @@ public class OrderMain {
 		Scanner sc = new Scanner(System.in);
 		String menu;
 
+		// 사용자 입력 받기
 		boolean flag = true;
 		while (flag) {
-			System.out.println("________________________________________________________"
-					+ "__________________________________________________________________");
-			System.out.println("1.아이템 추가   2.아이템 삭제   3.전체 아이템 정보 출력   4.회원 추가   5.회원 삭제   6.전체 회원 정보 출력   "
-					+ "7.주문 추가   8.개별 회원 주문 출력   9.전체 회원 주문 출력   q.종료");
+			System.out.println("_________________________________________________________________________");
+			System.out.println("1.아이템 추가   2.아이템 삭제   3.전체 아이템 정보 출력   4.회원 추가   5.회원 삭제   6.전체 회원 정보 출력   ");
+			System.out.println("7.주문 추가   8.개별 회원 주문 출력   9.전체 회원 주문 출력   q.종료");
+			System.out.println("_________________________________________________________________________");				
 			System.out.print("메뉴 입력: ");
 			menu = sc.nextLine().trim();
 

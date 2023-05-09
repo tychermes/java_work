@@ -3,7 +3,6 @@ package kosa.order;
 import java.util.ArrayList;
 import java.util.List;
 
-
 // Member : 이름, 주소
 public class Member {
 	private String name, address;

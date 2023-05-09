@@ -1,5 +1,7 @@
 package kosa.video;
 
+import java.util.List;
+
 public class Video {
 	// 비디오 정보 (번호, 제목, 배우)
 	private int no;
@@ -15,8 +17,19 @@ public class Video {
 		this.actor = actor;
 	}
 	
+	public static void printAll(List<Video> videoList) {
+		try {
+			for(int i=0; i<videoList.size(); i++) {
+				videoList.get(i).print();
+			}
+		} catch (NullPointerException e) {
+			System.out.println("회원이 빌린 비디오가 존재하지 않습니다.");
+			e.printStackTrace();
+		}
+	}
+	
 	void print() {
-		System.out.println("___________________________________________________________");
+		System.out.println("------------------------------");
 		System.out.println("회원의 대여한 비디오 번호: "+this.no);
 		System.out.println("회원의 대여한 비디오 제목: "+this.title);
 		System.out.println("회원의 대여한 비디오 주인공: "+this.actor);

@@ -35,7 +35,6 @@ public class PhoneBookMain {
 	public static void main(String[] args) {
 		// 
 		
-		Scanner sc = new Scanner(System.in);
 		String menu;
 		
 		Manager manager = new Manager();
@@ -46,7 +45,7 @@ public class PhoneBookMain {
 			System.out.println("_________________________________________");
 			System.out.println("1.추가   2.전체출력   3.검색   4.종료");
 			System.out.print("메뉴 입력: ");
-			menu = sc.nextLine().trim();
+			menu = DataInput.sc.nextLine().trim();
 			
 			switch (menu) {
 			case "1":

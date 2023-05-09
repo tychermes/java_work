@@ -14,15 +14,14 @@ public class Manager {
 
 	// static이 아니므로, main()에서 그냥 사용할 수 없다. 멤버메소드는 객체를 생성해야만 그때 메모리에 올라가게 된다.
 	protected void addPhoneInfo() {	
-		Scanner sc = new Scanner(System.in);
 		System.out.print("이름을 입력하세요: ");
-		String name = sc.nextLine().trim();
+		String name = DataInput.sc.nextLine().trim();
 		System.out.print("전화번호를 입력하세요: ");
-		String phoneNo = sc.nextLine().trim();
+		String phoneNo = DataInput.sc.nextLine().trim();
 		System.out.print("생년월일을 입력하세요: ");
-		String birth = sc.nextLine().trim();
+		String birth = DataInput.sc.nextLine().trim();
 		phoneList.add(new PhoneInfo(name, phoneNo, birth));
-		sc.close();
+		DataInput.sc.close();
 	}
 	
 	protected void listPhoneInfo() {

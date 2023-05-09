@@ -23,6 +23,7 @@ public class Order {
 		this.amount = quantity * item.getPrice();
 	}
 	
+	// 객체가 아닌 (멤버이름, 아이템이름) 문자열을 받는 생성자는 아직 구현이 어려운 걸로....
 //	public Order(String memberStr, String itemStr, int quantity) {
 //		super();
 //		for(Member m : me)

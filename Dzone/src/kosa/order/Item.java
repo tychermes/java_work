@@ -15,8 +15,6 @@ public class Item {
 		this.price = price;
 	}
 
-	
-	
 	public static void printItemList(ArrayList<Item> itemList) {
 		for(Item i : itemList) {
 			i.printItem();
