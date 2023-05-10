@@ -1,5 +1,4 @@
 package kosa.phone;
-import java.util.Scanner;
 
 /*
  * 문제> 공통객체 => 클래스  => 객체생성 => 생성자 => 객체활용(메서드 호출)
@@ -33,17 +32,17 @@ import java.util.Scanner;
 public class PhoneBookMain {
 
 	public static void main(String[] args) {
-		// 
-		
-		String menu;
-		
+
 		Manager manager = new Manager();
 		// 연관 관계는 오랫동안 지속되는 관계고, 의존 관계는 짧은 시간동만 만 지속되는 관계.
 		// Manager 객체는 main()메소드 안에서 생성되므로, 의존관계이다.
 		
-		while(true) {
+		String menu;
+		// switch 안의 내용을 int로 바꾸면, "ㄱ" 등 문자열로 잘못 입력되었을 때, NumberFormatException 이 발생하는데,
+		// 괜히 그럴 필요 없이 조건을 String 받도록 하면 되잖아.... 		
+		do {	// 4번,5번은 수정과 삭제는 2023.05.10에 추가함
 			System.out.println("_________________________________________");
-			System.out.println("1.추가   2.전체출력   3.검색   4.종료");
+			System.out.println("1.추가   2.전체출력   3.검색   4.수정   5.삭제   6.종료");
 			System.out.print("메뉴 입력: ");
 			menu = DataInput.sc.nextLine().trim();
 			
@@ -51,7 +50,6 @@ public class PhoneBookMain {
 			case "1":
 				// 추가
 				manager.addPhoneInfo();
-				manager.listPhoneInfo();
 				break;
 			case "2":
 				// 전체출력
@@ -62,17 +60,22 @@ public class PhoneBookMain {
 				manager.searchPhoneInfo();
 				break;
 			case "4":
+				// 수정
+				manager.modifyPhoneInfo();
+				break;
+			case "5":
+				// 삭제
+				manager.removePhoneInfo();
+				break;
+			case "6":
 				// 종료
 				System.out.println("프로그램을 종료합니다.");
-				return;
+				break;
 			default:
 				System.out.println("메뉴를 잘못 입력했습니다.");
 				break;
 			}
-			
-			
-			
-		}
+		} while(!menu.equals("6"));
 
 	}
 

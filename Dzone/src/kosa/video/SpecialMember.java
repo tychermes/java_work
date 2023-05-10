@@ -21,6 +21,10 @@ public class SpecialMember extends GeneralMember {
 		System.out.println("회원의 누적 포인트 : "+bonusPoint);
 	}
 	
+	void giveGift() {
+		
+	}
+	
 //	// 회원가입과 동시에 비디오 대여
 //	public SpecialMember(String id, String name, String address, Video video, int bonusPoint) {
 //		super(id, name, address, video);

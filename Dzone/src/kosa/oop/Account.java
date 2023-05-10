@@ -41,7 +41,7 @@ public class Account {
 			 //e.getMessage() 출력하면 나오는 스트링 설정.
 			throw new Exception("잔액이 부족합니다. 출금이 거절되었습니다.");
 		}
-		balance -= amount;
+		setBalance(balance - amount);
 		return amount; // 인출한 금액
 	}
 	
