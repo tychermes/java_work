@@ -27,7 +27,8 @@ public class CalendarMission02 {
 		for(int i=0; i<5 && k<=n; i++) {
 			for(int j=0; j<7 && k<=n; j++) {
 				if(i==0 && j<firstDayOfWeek) {
-					System.out.print("\t");					
+					System.out.print("\t");	
+					// 교수님 솔루션에 비해 나는 중첩for,if를 너무 많이 써서 복잡하고 어지러운 코드가 되는 것 같음	
 				} else {
 					calendar[i][j] = k++;
 					System.out.print(calendar[i][j]+"\t");
