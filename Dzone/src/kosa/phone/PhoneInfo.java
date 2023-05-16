@@ -1,6 +1,6 @@
 package kosa.phone;
 
-public class PhoneInfo {
+public class PhoneInfo implements Comparable<PhoneInfo>{
 	private String name, phoneNo, birth;
 	
 	public PhoneInfo() {}
@@ -12,6 +12,17 @@ public class PhoneInfo {
 		this.birth = birth;
 	}
 
+
+	@Override
+	public int compareTo(PhoneInfo o) {
+		if(name.compareTo(o.name) < 0) {
+			return -1; // 오름차순인데 뒤의 값이 더 크면 자리 이동할 필요X
+		} else if(name.compareTo(o.name) > 0) {
+			return 1;
+		}
+		return 0; // return name.compareTo(o.name); // 또는 애초에 이렇게만 해도 무방함
+	}
+	
 	// Method =================================
 	public void print() {
 		System.out.println("-----------------------------------------");
@@ -53,7 +64,7 @@ public class PhoneInfo {
 				System.out.println("메뉴를 잘못 입력했습니다.");
 				break;
 			}
-		} while(!menu.equals("q")); // 아 장난치나.. 처음에 !연산자를 안붙여서 실수함
+		} while(!menu.equals("q")); //처음에 !연산자를 안붙여서 실수함.
 	}
 	
 	// Getter & Setter =========================
@@ -80,5 +91,6 @@ public class PhoneInfo {
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
+
 
 }
