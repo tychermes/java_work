@@ -23,13 +23,12 @@ public class CopyExample {
 			writer = new FileWriter("poem3.txt");
 			
 			while(true) {
-				Arrays.fill(arr, ' ');	// 마지막으로 읽어들이는 ㄱ char배열에 혹시나 있을 쓰레기 값 제거
+				Arrays.fill(arr, ' ');	// 마지막으로 읽어들이는 char배열에 혹시나 있을 쓰레기 값 제거
 				int data = reader.read(arr); // 배열의 크기만큼 문자 읽기. 
 				if(data==-1) break;	// 파일이 끝날 때 까지
 				poem2 += String.valueOf(arr); // String에 char형 배열을 계속 덧붙이고
 //				// writer.write(arr);	// char 배열의 크기만큼 poem3.txt에 계속 쓰기. 교수님도 이 방법.
 			}
-			writer.write(poem2);	// 누적된 문자열을 한 번에 쓰기
 			System.out.println("문자 복사 완료.");
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -12,20 +12,20 @@ public class CopyUtil {
 	// 디렉토리 복사(새로운 디렉토리 생성 후, 특정 디렉토리 안의 파일들을 모두 복사)
 	// 파일 한 개를 복사하는 메소드를 사용. 디렉토리 속 디렉토리 안의 내용까지 모두 복사 - 재귀함수 사용.
 	public static void copyDirectory(File src, File dest) {
-		if (src.isDirectory()) { // 난 이걸 빼먹었는데, 
-			// 만약 디렉토리가 아니라면 listfiles()할 수 없으므로 해줘야 함.
+		if (src.isDirectory()) { // 난 이걸 빼먹었는데, 굉장히 중요함! 그냥 일반파일에 이렇게 하면 안됨.
+			// 왜냐면 만약 디렉토리가 아닌 일반 파일이라면 애초에 listfiles()할 수 없으므로.
 			File destDir = new File(dest, src.getName());
 			destDir.mkdirs(); // Desktop 안에 mission이라는 폴더를 생성해서 집어넣을 거임 (mkdir말고 mkdirs)
 			File[] srcFileList = src.listFiles();
 			for (File srcFile : srcFileList) {
+				File newDest = new File(destDir.getAbsolutePath(), srcFile.getName());
 				if (srcFile.isDirectory()) { // 디렉토리
-					File newDest = new File(destDir.getAbsolutePath(), srcFile.getName());
 					newDest.mkdir();
 //				System.out.println(f.getName());
 //				System.out.println(dest.getAbsolutePath());
 					copyDirectory(srcFile, newDest);
 				} else { // 일반 파일
-					copyFile(srcFile, new File(destDir, srcFile.getName()));
+					copyFile(srcFile, newDest);
 				}
 			}
 		}
@@ -36,7 +36,6 @@ public class CopyUtil {
 		if (src.isDirectory()) {
 			dest.mkdirs(); // mkdir은 상위 디렉터리가 없는 경우 생성하지 못하지만,
 			// mkdirs는 상위 디렉터리가 없으면 생성한다.
-
 			File[] fileList = src.listFiles();
 			for (int i = 0; i < fileList.length; i++) {
 				File sourceFile = fileList[i];
@@ -46,7 +45,7 @@ public class CopyUtil {
 				} else {
 					copyFile(sourceFile, new File(dest, src.getName()));
 				}
-
+				// 지금 s_destFile을 안썼는데... 내가 뭘 잘못 받아적은 것 같은데...
 			}
 		}
 	}

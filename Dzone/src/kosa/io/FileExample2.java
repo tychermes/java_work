@@ -5,7 +5,8 @@ import java.io.File;
 public class FileExample2 {
 
 	// 해당하는 디렉토리 안에 또 디렉토리가 있을 때에 그안의 목록들까지 계속 출력되도록.
-	static int level;
+	static int level; // 0
+	
 	public static void show(File file) {
 		File[] list = file.listFiles();
 		for(File f : list) {
@@ -14,13 +15,13 @@ public class FileExample2 {
 			}
 			if(f.isDirectory()) {
 				System.out.println("<DIR> "+f.getName());
+				level++;
 				show(f); // 재귀함수 호출
 			} else {
-				System.out.print("\t");
 				System.out.println(f.getName());
 			}
 		}
-		level++;
+		level--;
 	}
 	
 //	// T's solution
@@ -41,5 +42,7 @@ public class FileExample2 {
 		// 위의 절대 경로를 파일 클래스로 표현하기
 		File f = new File(path);
 		show(f);
+
+	
 	}
 }

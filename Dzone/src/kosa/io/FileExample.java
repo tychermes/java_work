@@ -10,7 +10,7 @@ public class FileExample {
 		String fileName1 = ".";
 		String fileName2 = "C:\\Douzone\\git\\java_work\\Dzone";
 		String fileName3 = "c:\\douzone\\git\\java_work\\Dzone"; 
-		// 디렉토리는 대소문자 상관 없군..
+		// 자바 디렉토리 대소문자 상관 있다고 나오는데 실제로 해보니까 상관없이 다 잘되네...
 		
 		File file = new File(fileName3);
 		
