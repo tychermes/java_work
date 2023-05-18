@@ -48,14 +48,15 @@ public class CopyExample {
 		InputStream is = null;
 		OutputStream os = null;
 		byte[] data = new byte[1024];
+		int dataLength = 0;
 		try {
 			is = new FileInputStream(inputFileName);
 			os = new FileOutputStream(outputFileName);
 			
 			while(true) {
-				int num = is.read(data); // 배열의 크기만큼 바이트 읽기. 
-				if(num==-1) break;	// 파일이 끝날 때 까지
-				os.write(data, 0, num);	// 읽어들인 data배열에서 0~1024 전까지 만큼을 sample2로 쓰기(출력)
+				dataLength = is.read(data); // data 배열의 크기만큼 (여기서는 1024)바이트 읽기. 
+				if(dataLength==-1) break;	// 파일이 끝날 때 까지
+				os.write(data, 0, dataLength);	// 읽어들인 data배열에서 0~1024 전까지 만큼을 sample2로 쓰기(출력)
 			}
 			System.out.println("이미지 복사 완료.");
 		} catch (IOException e) {
@@ -64,8 +65,12 @@ public class CopyExample {
 			try {
 				os.flush();// 내부 버퍼 잔류 바이트를 출력하고 버퍼를 비움. // TODO: 왜?왜하는데? 
 				//검색해보니 OutputStream에서는 아무 일도 수행하지 않는다던데 오히려 inputStream에서 필요한 거 아니야?
-				os.close();
-				is.close();
+				if(os!=null) {
+					os.close();
+				}
+				if(is!=null) {
+					is.close();
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
