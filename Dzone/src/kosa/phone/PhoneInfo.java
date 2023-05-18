@@ -1,6 +1,8 @@
 package kosa.phone;
 
-public class PhoneInfo implements Comparable<PhoneInfo>{
+import java.io.Serializable;
+// 2023.05.17 수정 : implements Serializable로 직렬화가능 클래스가 됨.
+public class PhoneInfo implements Comparable<PhoneInfo>, Serializable {
 	private String name, phoneNo, birth;
 	
 	public PhoneInfo() {}
@@ -12,6 +14,11 @@ public class PhoneInfo implements Comparable<PhoneInfo>{
 		this.birth = birth;
 	}
 
+
+	@Override
+	public String toString() {
+		return "PhoneInfo [name=" + name + ", phoneNo=" + phoneNo + ", birth=" + birth + "]";
+	}
 
 	@Override
 	public int compareTo(PhoneInfo o) {

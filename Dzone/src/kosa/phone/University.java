@@ -1,5 +1,6 @@
 package kosa.phone;
 
+//PhoneInfo를 상속받았기에 implements Serializable 안해도 이미 직렬화 가능 객체임.
 public class University extends PhoneInfo {
 	private String major; //전공
 	private String year; //학번
@@ -10,6 +11,11 @@ public class University extends PhoneInfo {
 		super(name, phoneNo, birth);
 		this.major = major;
 		this.year = year;
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + "University [major=" + major + ", year=" + year + "]";
 	}
 
 	// Method =================================	

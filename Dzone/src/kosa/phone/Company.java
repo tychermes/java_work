@@ -1,5 +1,6 @@
 package kosa.phone;
 
+//PhoneInfo를 상속받았기에 implements Serializable 안해도 이미 직렬화 가능 객체임.
 public class Company extends PhoneInfo {
 	private String department; //부서
 	private String position; //직급
@@ -12,6 +13,11 @@ public class Company extends PhoneInfo {
 		this.position = position;
 	}
 	
+	@Override
+	public String toString() {
+		return super.toString() + "Company [department=" + department + ", position=" + position + "]";
+	}
+
 	// Method =================================	
 	public void print() {
 		super.print();	// super를 빼면 에러가 난다. 거울속의 거울처럼 반복되는 느낌.....

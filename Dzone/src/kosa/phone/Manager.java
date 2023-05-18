@@ -1,9 +1,16 @@
 package kosa.phone;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import kosa.io.Member;
 
 // 비지니스 로직
 public class Manager {
@@ -22,13 +29,13 @@ public class Manager {
 		String phoneNo = DataInput.sc.nextLine().trim();
 		System.out.print("생년월일을 입력하세요: ");
 		String birth = DataInput.sc.nextLine().trim();
-		// TODO: 2023.05.10 수정:
+		// 2023.05.10 수정. // 2023.05.17 수정.
 		// 처음에 메뉴가 나와서 1.일반 2.대학 3.직장 나눠서 저장하고 싶다면!
-		System.out.println("저장할 카테고리를 선택하세요: ");
-		System.out.print("1.일반   2.대학   3.직장: ");
-		String category = DataInput.sc.nextLine().trim();
 		boolean flag = true;
 		while (flag) {
+			System.out.println("저장할 카테고리를 선택하세요: ");
+			System.out.print("1.일반   2.대학   3.직장: ");
+			String category = DataInput.sc.nextLine().trim();	
 			// switch 안의 내용을 int로 바꾸면, "ㄱ" 등 문자열로 잘못 입력되었을 때, NumberFormatException 이 발생하는데,
 			// 괜히 그럴 필요 없이 조건을 String 받도록 하면 되잖아....
 			switch (category) {
@@ -186,7 +193,46 @@ public class Manager {
 			break;
 		}
 	}
-
+	
+	// 객체 직렬화 메소드(저장)
+	public void savePhoneInfo() {
+		ObjectOutputStream oos = null;
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream("object_list.txt"));
+			oos.writeObject(phoneList);
+			System.out.println("저장 완료.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				oos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	// 객체 역직렬화 메소드(불러오기)
+	public void loadPhoneInfo() {
+		// this.phoneList = null; // 현재 메모리 상의 객체는 kill..<-하지마 그런 연락처 앱이 어딨어!
+		
+		ObjectInputStream ois = null;
+		try {
+			ois = new ObjectInputStream(new FileInputStream("object_list.txt"));
+			this.phoneList.addAll((List)ois.readObject()); 
+			//List<PhoneInfo>클래스 (또는 그냥 List클래스)로 △  캐스팅 필요
+			System.out.println("불러오기 완료.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ois.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	// Sort Method ======================== ▽아래 코드들이 너무 길어서 람다식으로 하면 좋을텐데...
 	public void sortByAscWithName() {
 		Collections.sort(phoneList);

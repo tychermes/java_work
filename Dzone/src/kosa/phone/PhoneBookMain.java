@@ -40,9 +40,9 @@ public class PhoneBookMain {
 		String menu;
 		// switch 안의 내용을 int로 바꾸면, "ㄱ" 등 문자열로 잘못 입력되었을 때, NumberFormatException 이 발생하는데,
 		// 괜히 그럴 필요 없이 조건을 String 받도록 하면 되잖아.... 		
-		do {	// 4번,5번은 수정과 삭제는 2023.05.10에 추가함
-			System.out.println("________________________________________________");
-			System.out.println("1.추가   2.전체출력   3.검색   4.수정   5.삭제   6.정렬   7.종료");
+		do { // 4번,5번 수정과 삭제는 05.10에 추가함. 6번 정렬은 05.16에 추가. 7,8번 저장과 불러오기는 05.17에 추가
+			System.out.println("______________________________________________________________");
+			System.out.println("1.추가   2.전체출력   3.검색   4.수정   5.삭제   6.정렬   7.저장   8.불러오기   9.종료");
 			System.out.print("메뉴 입력: ");
 			menu = DataInput.sc.nextLine().trim();
 			
@@ -72,6 +72,14 @@ public class PhoneBookMain {
 				manager.sortPhoneInfo();
 				break;
 			case "7":
+				// 저장
+				manager.savePhoneInfo();
+				break;
+			case "8":
+				// 불러오기
+				manager.loadPhoneInfo();
+				break;
+			case "9":
 				// 종료
 				System.out.println("프로그램을 종료합니다.");
 				break;
@@ -79,7 +87,7 @@ public class PhoneBookMain {
 				System.out.println("메뉴를 잘못 입력했습니다.");
 				break;
 			}
-		} while(!menu.equals("7"));
+		} while(!menu.equals("9"));
 
 	}
 

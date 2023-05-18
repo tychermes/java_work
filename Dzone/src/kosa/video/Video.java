@@ -1,8 +1,9 @@
 package kosa.video;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Video {
+public class Video implements Serializable {
 	// 비디오 정보 (번호, 제목, 배우)
 	private int no;
 	private String title;
