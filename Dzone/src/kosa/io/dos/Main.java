@@ -1,4 +1,4 @@
-package kosa.dos;
+package kosa.io.dos;
 
 import java.io.File;
 import java.util.Scanner;
