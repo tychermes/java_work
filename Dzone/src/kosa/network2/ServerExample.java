@@ -38,7 +38,7 @@ public class ServerExample {
 //			String msg = "Hello Client!!";
 //			os.write(msg.getBytes()); // getBytes()는 Byte[]을 (바이트배열) 반환함.
 			                                  
-			
+			// 클라이언트 끼리 채팅하는 경우에는 아래 코드 필요 없음.
 			Thread receiver = new ServerReceiver(socket);
 			Thread sender = new ServerSender(socket);
 
