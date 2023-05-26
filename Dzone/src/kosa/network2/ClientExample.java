@@ -12,7 +12,7 @@ public class ClientExample {
 		try {
 			 // 포트번호 9000은 서버 프로그램에서 정했음.
 //			socket = new Socket("127.0.0.1", 9000); // "127.0.0.1"은 로컬호스트ip
-			socket = new Socket("192.168.0.100", 9000); // 192.168.0.100 보윤(서버)'s ip.
+			socket = new Socket("192.168.0.95", 9000); // 내 ip.
 			
 //			InputStream in = socket.getInputStream();
 //			OutputStream os = socket.getOutputStream();

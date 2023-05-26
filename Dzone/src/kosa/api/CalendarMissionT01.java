@@ -13,7 +13,6 @@ public class CalendarMissionT01 {
 		String pattern = "yyyy/MM/dd"; // 입력도 이렇게 받자 => ex: 2022/01/01
 		DateFormat df = new SimpleDateFormat(pattern);
 		
-		
 		Scanner sc = new Scanner(System.in);
 		System.out.print("입사일을 입력하세요 (예시:2023/05/15): ");
 		Date inDate = null;

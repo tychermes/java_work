@@ -1,36 +1,48 @@
 package kosa.miniproject;
 
+import java.io.IOException;
+import java.net.Socket;
+import java.util.List;
 import java.util.Scanner;
 
 public class Util {
 	
-	
-	public static boolean login() {
+	public static Employee login(List<Employee> empList) {
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("아이디 입력:");
 		String inputId = sc.nextLine().trim();
 		
-		for(Employee e : Main.empList) {
-			if(inputId.equals(e.getId())){
+		for(Employee e : empList) {
+			if(inputId.equals(e.getId())){ // ID가 매칭되면
 				System.out.print("비밀번호 입력:");
 				String inputPw = sc.nextLine().trim();
 				if(inputPw.equals(e.getPw())) {
-					System.out.println("로그인 성공.");
-					return true;
+					return e;
 				}
-			}
+			} 
 		}
-		return false;
+		System.out.println("일치하는 회원 ID가 없습니다.");
+		return null; // 메인에서 NullPointerException 처리해주기
 	}
 	
-	public boolean logout() {
-		//
-		return true;
+	public static void logout(Socket socket) {
+		try {
+			socket.close();
+			System.out.println(ClientMain.me.getName()+"님 로그아웃 합니다.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
+	
+//	// 이건 퇴사 처리... + DB작업 필요
+//	public static List<Employee> deleteEmployee(List<Employee> empList) {
+//		System.out.println(ClientMain.me.getName()+" 로그아웃");
+//		empList.remove(ClientMain.me);
+//		return empList;
+//	}
 	
 	public static Employee join () {
-
 
 		String pw = null;
 		String pwConfirm = null;
@@ -64,8 +76,8 @@ public class Util {
 		socialNo = sc.nextLine().trim();
 		System.out.print("휴대전화번호: "); 
 		phoneNo = sc.nextLine().trim();
-		
-		return new Employee(name, socialNo, phoneNo, id, pw);
+	
+		return new Employee(name, socialNo, phoneNo, id, pw, 1);
 	}
 
 	

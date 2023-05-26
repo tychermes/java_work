@@ -1,24 +1,28 @@
 package kosa.miniproject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Employee {
-	
-	private String employeeNo;	// 사번
-	private String name;		// 이름
-	private String socialNo;	// 주민등록번호
-	private String dept; 		// 부서 //TODO: Department를 String으로 가질지, 객체로 가질지?? 생각해보기
-	private String position;	// 직책
-	private String phoneNo;		// 휴대전화번호
-	private String joinDate;	// 입사일 //TODO: Date객체로 바꾸든지 말든지...
-	private int permission;		// 권한
-	private String id;		// id
-	private String pw;		// pw
-	
-	public Employee() {}
+import kosa.miniprojectminjun.Main;
 
-	public Employee(String name, String socialNo, String phoneNo, String id, String pw) {
+public class Employee implements Serializable {
+
+	private String empNo; // 사번
+	private String name; // 이름
+	private String socialNo; // 주민등록번호
+	private String dept; // 부서 //TODO: Department를 String으로 가질지, 객체로 가질지?? 생각해보기
+	private String position; // 직책
+	private String phoneNo; // 휴대전화번호
+	private String joinDate; // 입사일 //TODO: Date객체로 바꾸든지 말든지...
+	private String permission; // 권한
+	private String id; // id
+	private String pw; // pw
+
+	public Employee() {
+	}
+
+	public Employee(String empNo, String name, String socialNo, String dept, String position, int flag) {
 		super();
 		this.name = name;
 		this.socialNo = socialNo;
@@ -26,61 +30,105 @@ public class Employee {
 		this.id = id;
 		this.pw = pw;
 	}
-	
-	public Employee(String employeeNo, String name, String socialNo, String dept, String position, String phoneNo,
-			String joinDate, int permission, String id, String pw) {
+
+	public Employee(String empNo, String name, String socialNo, String dept, String position) {
 		super();
-		this.employeeNo = employeeNo;
+		this.empNo = empNo;
 		this.name = name;
 		this.socialNo = socialNo;
 		this.dept = dept;
 		this.position = position;
-		this.phoneNo = phoneNo;
-		this.joinDate = joinDate;
-		this.permission = permission;
-		this.id = id;
-		this.pw = pw;
-	}
-
-	// Method ==================================================================================================
-	public void registrate(String employeeNo, String position, String dept, String joinDate, int permission) {
-//		this.employeeNo = employeeNo;
-//		this.permission = permission;
-//		this.position = position;
-//		this.dept = dept;
-//		this.joinDate = joinDate;
 	}
 	
-	public String getPermission() {
-		return dept;
+	public Employee(String empNo, String name, String socialNo, String dept, String position, String phoneNo, String id, String pw) {
+		super();
+		this.empNo = empNo;
+		this.name = name;
+		this.socialNo = socialNo;
+		this.dept = dept;
+		this.position = position;
 	}
 
-	public static ArrayList<Employee> initEmployeeList() {
+	public Employee(List<String> stringList) {
+		super();
+		this.empNo = stringList.get(0).trim();
+		this.name = stringList.get(1).trim();
+		this.phoneNo = stringList.get(2).trim();
+		this.dept = stringList.get(3).trim();
+		this.position = stringList.get(4).trim();
+		this.socialNo = stringList.get(5).trim();
+		this.joinDate = stringList.get(6).trim();
+		this.permission = stringList.get(7).trim();
+		this.id = stringList.get(8).trim();
+		this.pw = stringList.get(9).trim();
+	}
+
+	// Method
+	// ==================================================================================================
+	public boolean registrate(List<Employee> empList) {
+		boolean flag = false;
+		for (int i = 0; i < empList.size(); i++) {
+			if (this.getName().equals(empList.get(i).name) && this.getSocialNo().equals(empList.get(i).socialNo)) {
+				this.empNo = empList.get(i).getEmpNo();
+				this.permission = empList.get(i).getPermission();
+				this.position = empList.get(i).getPosition();
+				this.dept = empList.get(i).getDept();
+				this.joinDate = empList.get(i).getJoinDate();
+				System.out.println("DB 일치 사원  찾음." + empList.get(i).getName());
+				flag = true;
+			}
+		}
+		if (!flag) {
+			System.out.println("정보가 없습니다. 인사팀에 문의주세요~");
+			return false;
+		}
+
+		List<List<String>> csvList = new ArrayList<List<String>>();
+		for (int i = 0; i < empList.size(); i++) {
+			List<String> stringList = new ArrayList<String>();
+			stringList.add(empList.get(i).getEmpNo());
+			stringList.add(empList.get(i).getName());
+			stringList.add(empList.get(i).getPhoneNo());
+			stringList.add(empList.get(i).getDept());
+			stringList.add(empList.get(i).getPosition());
+			stringList.add(empList.get(i).getSocialNo());
+			stringList.add(empList.get(i).getJoinDate());
+			stringList.add(empList.get(i).getPermission());
+			stringList.add(empList.get(i).getId());
+			stringList.add(empList.get(i).getPw());
+			csvList.add(stringList);
+		}
+		CSVManager csvManager = new CSVManager();
+		csvManager.writeCSV(csvList);
+		ServerMain.empList = initEmployeeList();
+
+		return flag;
+	}
+
+	public static List<Employee> initEmployeeList() {
 		List<Employee> empList = new ArrayList<Employee>();
-		
-		CSVReader csvReader = new CSVReader();
+
+		CSVManager csvReader = new CSVManager();
 		List<List<String>> csvList = csvReader.readCSV();
 
-        for (List<String> item : csvList) {
-        	for(String s : item) {
-                System.out.print(s+", ");
-        	}
-        	System.out.println();
-        }
-        
-        // TODO: ▽이부분 개발 중
-        empList.add(new Employee());
-        
-        return (ArrayList<Employee>) empList;
+		for (List<String> item : csvList) {
+			System.out.println(item.toString());
+			if (item.get(0).equals("사번")) {
+				continue;
+			}
+			empList.add(new Employee(item));
+		}
+
+		return (ArrayList<Employee>) empList;
 	}
 
 	// Getter & Setter =================================
-	public String getEmployeeNo() {
-		return employeeNo;
+	public String getEmpNo() {
+		return empNo;
 	}
 
-	public void setEmployeeNo(String employeeNo) {
-		this.employeeNo = employeeNo;
+	public void setEmpNo(String employeeNo) {
+		this.empNo = employeeNo;
 	}
 
 	public String getName() {
@@ -147,12 +195,29 @@ public class Employee {
 		this.pw = pw;
 	}
 
-	public void setPermission(int permission) {
+	public String getPermission() {
+		return permission;
+	}
+
+	public void setPermission(String permission) {
 		this.permission = permission;
 	}
-	
 
-	
-	
-	
+	@Override
+	public boolean equals(Object obj) {
+		Employee e = (Employee) obj;
+		System.out.println("e.getEmpNo:" + e.getEmpNo());
+
+		if (!(obj instanceof String)) {
+			return false;
+		}
+		return this.empNo.equals(e) ? true : false;
+	}
+
+	@Override
+	public String toString() {
+		return "\n Employee [empNo=" + empNo + ", name=" + name + ", socialNo=" + socialNo + ", dept=" + dept
+				+ ", position=" + position + ", phoneNo=" + phoneNo + ", joinDate=" + joinDate + ", permission="
+				+ permission + ", id=" + id + ", pw=" + pw + "]";
+	}
 }

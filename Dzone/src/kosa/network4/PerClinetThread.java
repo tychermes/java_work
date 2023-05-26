@@ -21,7 +21,7 @@ public class PerClinetThread extends Thread {
             writer = new PrintWriter(socket.getOutputStream());
             list.add(writer);
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
 
     }
